@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "nR23zaOvO8c=",
+  "success": true,
+  "projectFilePath": "/home/kyle/.local/share/Terraria/tModLoader/ModSources/aylocks/aylocks.csproj",
+  "expectedPackageFiles": [
+    "/home/kyle/.nuget/packages/tmodloader.codeassist/0.1.5/tmodloader.codeassist.0.1.5.nupkg.sha512",
+    "/home/kyle/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.15/microsoft.aspnetcore.app.ref.8.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}

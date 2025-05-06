@@ -1,0 +1,20 @@
+# This file will automatically update with entries for new content after a build and reload.
+
+Items: {
+	PoopSword: {
+		DisplayName: Poop Sword
+		Tooltip:
+			'''
+			Template of an item
+			Replacing this tooltip is duty 
+			It's snowing on Mt.Fuji
+			'''
+	}
+
+	RainGemHook: {
+		Tooltip: ""
+		DisplayName: Rain Gem Hook
+	}
+}
+
+Projectiles.RainGemHookProjectile.DisplayName: Rain Gem Hook Projectile
