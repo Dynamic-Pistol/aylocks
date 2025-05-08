@@ -94,9 +94,6 @@ namespace aylocks.Content.Items.Tools
 			int textureIndex = 0;
 			while (distanceToPlayer > 20f && !float.IsNaN(distanceToPlayer))
 			{
-				// (int)MathF.Round(distanceToPlayer) % 6;
-				Main.NewText($"Getting texture index: {textureIndex}");
-				Mod.Logger.Debug($"Getting texture index: {textureIndex}");
 				directionToPlayer /= distanceToPlayer; // get unit vector
 				directionToPlayer *= chainTexture[textureIndex].Height(); // multiply by chain link length
 

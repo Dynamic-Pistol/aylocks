@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("aylocks")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca7d6a686e3e43849cbd886dd7ced7a49629fbab")]
 [assembly: System.Reflection.AssemblyProductAttribute("aylocks")]
 [assembly: System.Reflection.AssemblyTitleAttribute("aylocks")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

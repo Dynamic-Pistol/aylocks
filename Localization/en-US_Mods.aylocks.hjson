@@ -15,6 +15,59 @@ Items: {
 		Tooltip: ""
 		DisplayName: Rain Gem Hook
 	}
+
+	RainGemStaff: {
+		DisplayName: Rain Gem Staff
+		Tooltip: ""
+	}
+
+	SoulOfScright: {
+		Tooltip: ""
+		DisplayName: Soul Of Scright
+	}
+
+	SoulOfHeight: {
+		Tooltip: ""
+		DisplayName: Soul Of Height
+	}
+
+	SoulOfBright: {
+		Tooltip: ""
+		DisplayName: Soul Of Bright
+	}
+
+	Siymar: {
+		DisplayName: Siymar
+		Tooltip: ""
+	}
+
+	SoulOfSmite: {
+		Tooltip: ""
+		DisplayName: Soul Of Smite
+	}
+
+	SoulOfMite: {
+		Tooltip: ""
+		DisplayName: Soul Of Mite
+	}
+
+	SoulOfBite: {
+		Tooltip: ""
+		DisplayName: Soul Of Bite
+	}
+
+	MechanicalFishUpgradeKit: {
+		Tooltip: ""
+		DisplayName: Mechanical Fish Upgrade Kit
+	}
+
+	DuckFishUpgradeKit: {
+		Tooltip: ""
+		DisplayName: Duck Fish Upgrade Kit
+	}
 }
 
-Projectiles.RainGemHookProjectile.DisplayName: Rain Gem Hook Projectile
+Projectiles: {
+	RainGemHookProjectile.DisplayName: Rain Gem Hook Projectile
+	RainGemProjectile.DisplayName: Rain Gem Projectile
+}
