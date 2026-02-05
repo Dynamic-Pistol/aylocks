@@ -34,6 +34,9 @@ namespace aylocks.Content.Items
             {
                 entity.shootSpeed = 13f;
             }
+            else if (entity.type == ItemID.ScarabFishingRod){
+                entity.fishingPole = 25;
+            }
         }
     }
     
