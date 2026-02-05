@@ -1,5 +1,7 @@
 using aylocks.Content.Items.Materials;
 using Terraria;
+using Terraria.Enums;
+using Terraria.GameContent.Items;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -16,7 +18,7 @@ namespace aylocks.Content.Systems
                 () => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.CobaltBar)}"
                 , ItemID.CobaltBar, ItemID.PalladiumBar);
             RecipeGroup.RegisterGroup("aylocks:AnyH1Bar", anyCobaltBar);
-            
+
             RecipeGroup anyCobaltBreastPlate = new RecipeGroup(
                 () => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.CobaltBreastplate)}"
                 , ItemID.CobaltBreastplate, ItemID.PalladiumBreastplate);
@@ -70,7 +72,7 @@ namespace aylocks.Content.Systems
             RecipeGroup.RegisterGroup("aylocks:AnyH2HatMage", anyMythrilHelmetMage);
             #endregion
             #region Misc
-            
+
             #endregion
         }
 
@@ -84,10 +86,16 @@ namespace aylocks.Content.Systems
                 .AddIngredient(ItemID.FisherofSouls)
                 .AddTile(TileID.Anvils)
                 .Register();
+            Recipe.Create(ItemID.ScarabFishingRod)
+            .AddIngredient(ItemID.FiberglassFishingPole)
+            .AddIngredient(ItemID.WaterStrider, 7)
+            .AddIngredient(ItemID.FossilOre, 3)
+            .AddTile(TileID.GlassKiln)
+            .Register();
             Recipe.Create(ItemID.FiberglassFishingPole)
                 .AddIngredient(ItemID.Glass, 20)
                 .AddIngredient(ItemID.Vine, 7)
-                .AddIngredient(ItemID.Fleshcatcher)
+                .AddIngredient(ItemID.ScarabFishingRod)
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.MechanicsRod)
@@ -127,15 +135,15 @@ namespace aylocks.Content.Systems
                 {
                     recipe.AddRecipeGroup("aylocks:AnyH1BreastPlate");
                 }
-                else if (recipe.HasResult(ItemID.OrichalcumLeggings) ||  recipe.HasResult(ItemID.MythrilGreaves))
+                else if (recipe.HasResult(ItemID.OrichalcumLeggings) || recipe.HasResult(ItemID.MythrilGreaves))
                 {
                     recipe.AddRecipeGroup("aylocks:AnyH1Legging");
                 }
-                else if (recipe.HasResult(ItemID.OrichalcumMask) ||   recipe.HasResult(ItemID.MythrilHelmet))
+                else if (recipe.HasResult(ItemID.OrichalcumMask) || recipe.HasResult(ItemID.MythrilHelmet))
                 {
                     recipe.AddRecipeGroup("aylocks:AnyH1HatMelee");
                 }
-                else if (recipe.HasResult(ItemID.OrichalcumHelmet) ||  recipe.HasResult(ItemID.MythrilHat))
+                else if (recipe.HasResult(ItemID.OrichalcumHelmet) || recipe.HasResult(ItemID.MythrilHat))
                 {
                     recipe.AddRecipeGroup("aylocks:AnyH1HatRanger");
                 }
@@ -149,15 +157,15 @@ namespace aylocks.Content.Systems
                 {
                     recipe.AddRecipeGroup("aylocks:AnyH2BreastPlate");
                 }
-                else if (recipe.HasResult(ItemID.TitaniumLeggings) ||  recipe.HasResult(ItemID.AdamantiteLeggings))
+                else if (recipe.HasResult(ItemID.TitaniumLeggings) || recipe.HasResult(ItemID.AdamantiteLeggings))
                 {
                     recipe.AddRecipeGroup("aylocks:AnyH2Legging");
                 }
-                else if (recipe.HasResult(ItemID.TitaniumHelmet) ||   recipe.HasResult(ItemID.AdamantiteMask))
+                else if (recipe.HasResult(ItemID.TitaniumHelmet) || recipe.HasResult(ItemID.AdamantiteMask))
                 {
                     recipe.AddRecipeGroup("aylocks:AnyH2HatMelee");
                 }
-                else if (recipe.HasResult(ItemID.TitaniumMask) ||  recipe.HasResult(ItemID.AdamantiteHelmet))
+                else if (recipe.HasResult(ItemID.TitaniumMask) || recipe.HasResult(ItemID.AdamantiteHelmet))
                 {
                     recipe.AddRecipeGroup("aylocks:AnyH2HatRanger");
                 }
@@ -178,6 +186,39 @@ namespace aylocks.Content.Systems
                 #endregion
             }
         }
-        
+        // We use PostWorldGen for this because we want to ensure that all chests have been placed before adding items.
+        public override void PostWorldGen()
+        {
+            for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
+            {
+                Chest chest = Main.chest[chestIndex];
+                if (chest == null)
+                {
+                    continue;
+                }
+                Tile chestTile = Main.tile[chest.x, chest.y];
+                // We need to check if the current chest is the Frozen Chest. We need to check that it exists and has the TileType and TileFrameX values corresponding to the Frozen Chest.
+                // If you look at the sprite for Chests by extracting Tiles_21.xnb, you'll see that the 12th chest is the Frozen Chest. Since we are counting from 0, this is where 11 comes from. 36 comes from the width of each tile including padding. An alternate approach is to check the wiki and looking for the "Internal Tile ID" section in the infobox: https://terraria.wiki.gg/wiki/Frozen_Chest
+                if (chestTile.TileType == TileID.Containers && chestTile.TileFrameX == 10 * 36)
+                {
+                    {
+                        // Next we need to find the first empty slot for our item
+                        for (int inventoryIndex = 0; inventoryIndex < Chest.maxItems; inventoryIndex++)
+                        {
+                            if (chest.item[inventoryIndex].type == ItemID.None)
+                            {
+                                for (int i = 0; i < Chest.maxItems; i++)
+                                {
+                                    if (chest.item[i].type == ItemID.FiberglassFishingPole)
+                                    {
+                                        chest.item[i].SetDefaults(ItemID.GreaterHealingPotion);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
