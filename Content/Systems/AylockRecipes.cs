@@ -80,14 +80,14 @@ namespace aylocks.Content.Systems
         {
             #region Fishing
 
-            Recipe.Create(ItemID.FiberglassFishingPole)
-                .AddIngredient(ItemID.Glass, 20)
-                .AddIngredient(ItemID.Vine, 7)
-                .AddIngredient(ItemID.FisherofSouls)
-                .AddTile(TileID.Anvils)
-                .Register();
             Recipe.Create(ItemID.ScarabFishingRod)
-            .AddIngredient(ItemID.FiberglassFishingPole)
+            .AddIngredient(ItemID.FisherofSouls)
+            .AddIngredient(ItemID.WaterStrider, 7)
+            .AddIngredient(ItemID.FossilOre, 3)
+            .AddTile(TileID.GlassKiln)
+            .Register();
+            Recipe.Create(ItemID.ScarabFishingRod)
+            .AddIngredient(ItemID.Fleshcatcher)
             .AddIngredient(ItemID.WaterStrider, 7)
             .AddIngredient(ItemID.FossilOre, 3)
             .AddTile(TileID.GlassKiln)
@@ -112,16 +112,20 @@ namespace aylocks.Content.Systems
             Recipe.Create(ItemID.HotlineFishingHook)
                 .AddIngredient(ItemID.SittingDucksFishingRod)
                 .AddIngredient(ItemID.HellstoneBar, 6)
-                .AddTile(TileID.MythrilAnvil)
+                .AddIngredient(ItemID.MagmaSnail, 5)
+                .AddTile(TileID.Hellforge)
                 .Register();
             Recipe.Create(ItemID.GoldenFishingRod)
                 .AddIngredient(ItemID.HotlineFishingHook)
-                .AddIngredient(ItemID.GoldBar, 15)
-                .AddRecipeGroup("aylocks:AnyH1Bar", 3)
-                .AddTile(TileID.MythrilAnvil)
+                .AddIngredient(ModContent.ItemType<GoldenScale>(), 25)
+                .AddTile(TileID.Anvils)
                 .Register();
-
             #endregion
+            Recipe.Create(ItemID.GoldenBugNet)
+            .AddIngredient(ItemID.FireproofBugNet)
+            .AddIngredient(ModContent.ItemType<GoldenScale>(), 10)
+            .AddTile(TileID.Anvils)
+            .Register();
         }
 
         public override void PostAddRecipes()

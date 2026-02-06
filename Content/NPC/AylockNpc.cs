@@ -10,7 +10,7 @@ namespace aylocks.Content.NPC
     {
         public override void ModifyNPCLoot(Terraria.NPC npc, NPCLoot npcLoot)
         {
-            
+
             if (npc.type == NPCID.EyeofCthulhu)
             {
                 var leadingConditionRule =
@@ -30,7 +30,7 @@ namespace aylocks.Content.NPC
             {
                 var leadingConditionRule =
                     new LeadingConditionRule(new Conditions.NotExpert());
-                
+
                 leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulOfBite>(), 4, 1, 3));
                 npcLoot.Add(leadingConditionRule);
             }
@@ -40,7 +40,7 @@ namespace aylocks.Content.NPC
                 var leadingConditionRule =
                     new LeadingConditionRule(new Conditions.LegacyHack_IsBossAndNotExpert());
 
-                leadingConditionRule.OnSuccess( ItemDropRule.Common(ModContent.ItemType<SoulOfBite>(), 1, 6, 8));
+                leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulOfBite>(), 1, 6, 8));
                 npcLoot.Add(leadingConditionRule);
             }
         }
@@ -49,18 +49,35 @@ namespace aylocks.Content.NPC
         {
             if (shop.NpcType == NPCID.TravellingMerchant)
             {
-                if (shop.TryGetEntry(ItemID.SittingDucksFishingRod, out var entry))
-                {
-                    entry.Disable();
-                    shop.Add(new Item(ModContent.ItemType<DuckFishUpgradeKit>())
-                    {
-                        shopCustomPrice = Item.buyPrice(gold: 5, silver:20),
-                    }, Condition.DownedSkeletron);
-                    
+                //Old way
+                // if (shop.TryGetEntry(ItemID.SittingDucksFishingRod, out var entry))
+                // {
+                //     // entry.Disable();
+                //     // shop.Add(new Item(ModContent.ItemType<DuckFishUpgradeKit>())
+                //     // {
+                //     //     shopCustomPrice = Item.buyPrice(gold: 5, silver:20),
+                //     // }, Condition.DownedSkeletron);
+                // }
+            
+                //New way
+                for (int i = 0; i < shop.Entries.Count; i++) {
+                    if (shop.Entries[i].Item.type == ItemID.SittingDucksFishingRod){
+                        shop.Entries[i].Item.type = ModContent.ItemType<DuckFishUpgradeKit>();
+                        break;
+                    }
+                }
+            }
+            else if (shop.NpcType == NPCID.Mechanic)
+            {
+                for (int i = 0; i < shop.Entries.Count; i++) {
+                    if (shop.Entries[i].Item.type == ItemID.MechanicsRod){
+                        shop.Entries[i].Item.type = ModContent.ItemType<MechanicalFishUpgradeKit>();
+                        break;
+                    }
                 }
             }
         }
-        
-        
+
+
     }
 }

@@ -12,13 +12,12 @@ namespace aylocks.Content
         {
             var hotlineRodIdIndex = rewardItems.FindIndex((item) => item.type == ItemID.HotlineFishingHook);
             rewardItems.RemoveAt(hotlineRodIdIndex);
+            var goldenNetIdIndex = rewardItems.FindIndex((item) => item.type == ItemID.GoldenBugNet);
+            rewardItems[goldenNetIdIndex].type = ModContent.ItemType<GoldenScale>();
+            rewardItems[goldenNetIdIndex].stack = Main.rand.Next(20, 30);
             var goldenRodIdIndex = rewardItems.FindIndex((item) => item.type == ItemID.GoldenFishingRod);
-            rewardItems.RemoveAt(goldenRodIdIndex);
-            if (rareMultiplier < 20 && Condition.DownedSkeletron.IsMet())
-            {
-                var mechanicalUpgradeKit = new Item(ModContent.ItemType<MechanicalFishUpgradeKit>());
-                rewardItems.Add(mechanicalUpgradeKit);
-            }
+            rewardItems[goldenRodIdIndex].type = ModContent.ItemType<GoldenScale>();
+            rewardItems[goldenRodIdIndex].stack = Main.rand.Next(20, 30);
         }
     }
 }
