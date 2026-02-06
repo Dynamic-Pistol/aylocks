@@ -47,6 +47,7 @@ namespace aylocks.Content.Items.Weapons
             Projectile.height = 16; // The height of projectile hitbox
             Projectile.Opacity = 1;
             Projectile.light = 0.4f;
+            
         }
 
         public override void SetStaticDefaults()

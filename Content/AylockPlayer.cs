@@ -10,14 +10,24 @@ namespace aylocks.Content
     {
         public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
         {
-            var hotlineRodIdIndex = rewardItems.FindIndex((item) => item.type == ItemID.HotlineFishingHook);
-            rewardItems.RemoveAt(hotlineRodIdIndex);
-            var goldenNetIdIndex = rewardItems.FindIndex((item) => item.type == ItemID.GoldenBugNet);
-            rewardItems[goldenNetIdIndex].type = ModContent.ItemType<GoldenScale>();
-            rewardItems[goldenNetIdIndex].stack = Main.rand.Next(5, 10);
-            var goldenRodIdIndex = rewardItems.FindIndex((item) => item.type == ItemID.GoldenFishingRod);
-            rewardItems[goldenRodIdIndex].type = ModContent.ItemType<GoldenScale>();
-            rewardItems[goldenRodIdIndex].stack = Main.rand.Next(20, 30);
+            foreach (var item in rewardItems)
+            {
+                switch (item.type)
+                {
+                    case ItemID.HotlineFishingHook:
+                        rewardItems.Remove(item);
+                        break;
+                    case ItemID.GoldenBugNet:
+                        item.SetDefaults(ModContent.ItemType<GoldenScale>());
+                        item.stack = Main.rand.Next(5, 10);
+                        break;
+                    case ItemID.GoldenFishingRod:
+
+                        item.SetDefaults(ModContent.ItemType<GoldenScale>());
+                        item.stack = Main.rand.Next(20, 30);
+                        break;
+                }
+            }
         }
     }
 }

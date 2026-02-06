@@ -62,7 +62,7 @@ namespace aylocks.Content.NPC
                 //New way
                 for (int i = 0; i < shop.Entries.Count; i++) {
                     if (shop.Entries[i].Item.type == ItemID.SittingDucksFishingRod){
-                        shop.Entries[i].Item.type = ModContent.ItemType<DuckFishUpgradeKit>();
+                        shop.Entries[i].Item.SetDefaults(ModContent.ItemType<DuckFishUpgradeKit>());
                         break;
                     }
                 }
@@ -71,7 +71,7 @@ namespace aylocks.Content.NPC
             {
                 for (int i = 0; i < shop.Entries.Count; i++) {
                     if (shop.Entries[i].Item.type == ItemID.MechanicsRod){
-                        shop.Entries[i].Item.type = ModContent.ItemType<MechanicalFishUpgradeKit>();
+                        shop.Entries[i].Item.SetDefaults(ModContent.ItemType<MechanicalFishUpgradeKit>());
                         break;
                     }
                 }
