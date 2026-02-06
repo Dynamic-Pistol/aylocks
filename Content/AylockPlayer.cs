@@ -14,7 +14,7 @@ namespace aylocks.Content
             rewardItems.RemoveAt(hotlineRodIdIndex);
             var goldenNetIdIndex = rewardItems.FindIndex((item) => item.type == ItemID.GoldenBugNet);
             rewardItems[goldenNetIdIndex].type = ModContent.ItemType<GoldenScale>();
-            rewardItems[goldenNetIdIndex].stack = Main.rand.Next(20, 30);
+            rewardItems[goldenNetIdIndex].stack = Main.rand.Next(5, 10);
             var goldenRodIdIndex = rewardItems.FindIndex((item) => item.type == ItemID.GoldenFishingRod);
             rewardItems[goldenRodIdIndex].type = ModContent.ItemType<GoldenScale>();
             rewardItems[goldenRodIdIndex].stack = Main.rand.Next(20, 30);
